@@ -1,0 +1,19 @@
+{
+  "name": "admin_employees_roles_users",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/express": "^5.0.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "express": "^5.0.1"
+  },
+  "scripts": {
+    "start": "bun run index.ts"
+  }
+}
