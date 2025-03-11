@@ -1,19 +1,17 @@
 {
   "name": "admin_employees_roles_users",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "devDependencies": {
-    "@types/bun": "latest",
-    "@types/express": "^5.0.0"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
+  "module": "index.mjs",
   "dependencies": {
     "express": "^5.0.1"
   },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.10",
+    "dotenv": "^16.4.7"
+  },
+  "private": true,
   "scripts": {
-    "start": "bun run index.ts"
-  }
+    "start": "node index.mjs"
+  },
+  "type": "module"
 }
