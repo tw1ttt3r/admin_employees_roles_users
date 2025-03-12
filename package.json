@@ -13,5 +13,8 @@
   "scripts": {
     "start": "node index.mjs"
   },
-  "type": "module"
+  "type": "module",
+  "imports": {
+    "#config/*": ["./config/*"]
+  }
 }
