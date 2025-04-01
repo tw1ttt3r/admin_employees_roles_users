@@ -3,9 +3,17 @@ import { config } from "dotenv";
 config();
 
 const {
-  PORT
+  PORT,
+  DB_URL,
+  DB_TOKEN,
+  WHITELIST,
+  EXCLUDED_ROUTES
 } = process.env;
 
 export {
-  PORT
+  PORT,
+  DB_URL,
+  DB_TOKEN,
+  WHITELIST,
+  EXCLUDED_ROUTES
 };
