@@ -3,6 +3,7 @@ import helmet from "helmet";
 import cors from "cors";
 import { OPTIONS } from "#config/whitelist.mjs";
 import { PORT, ROUTES, STATUSHTTP, EXCLUDED_ROUTES } from "#config/index.mjs";
+import { Utils, Queries } from "#class/index.mjs";
 
 const app = express();
 app.use(express.json());
@@ -17,8 +18,32 @@ app.use((req, res, next) => {
   cors(OPTIONS)(req, res, next);
 });
 
+const utils = new Utils();
+
 app.get(ROUTES.HOME, (_, res) => {
   res.json({ response: "Microservice Roles and Permissions online!" }).send();
+});
+
+app.post(ROUTES.GETROLES, async(req, res) => {
+  try {
+    if (utils.validateRequestBody(req.body, ['user', 'key_validator'])) {
+      res.status(STATUSHTTP.BADREQUEST).json({ msg: "Credential missings" }).send();
+      return
+    }
+
+    if (!utils.validateKeyValidator(req.body['key_validator'])) {
+      res.status(STATUSHTTP.BADREQUEST).json({ msg: "Validation fails!" }).send();
+      return
+    }
+
+    const conn = new Queries();
+    const r = await conn.getRoles({ ...req.body });
+  
+    res.json({ ...r }).send();
+  } catch(error) {
+    console.log("errro", error)
+    res.status(STATUSHTTP.BADREQUEST).json({ data: 'Servicio no disponible' }).send();
+  }
 });
 
 // /* WILDCARD */
