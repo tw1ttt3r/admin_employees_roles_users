@@ -1,5 +1,6 @@
 const ROUTES = {
   HOME: '/',
+  GETROLES: '/getroles',
   WILDCARD: '*'
 }
 
