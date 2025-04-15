@@ -25,9 +25,11 @@ class Queries extends Database {
       }
       const [ data ] = rows;
       const { id_usuario, estatus } = data;
-      if (!!estatus) {
+
+      if (!estatus && !id_usuario) {
         return { status: STATUSRESPONSE.NOTACTIVE, data: { estatus: 2 } }
       }
+      
       this.#query = this.getQuery('getRolesByUser');
       this.#params = [ id_usuario ];
       const { rows: roles } = await this.client.execute({
